@@ -16,7 +16,9 @@ class SubCategory(models.Model):
 class Products(models.Model):
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=300)
+    product_brandName = models.CharField(max_length=200)
     product_price = models.DecimalField(max_digits=12, decimal_places=2)
+    product_discount = models.DecimalField(max_digits=12, decimal_places=2)
     product_image1 = models.ImageField()
     product_image2 = models.ImageField()
     product_image3 = models.ImageField()
