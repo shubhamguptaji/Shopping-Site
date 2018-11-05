@@ -1,0 +1,16 @@
+{% include "Website/navbar.html" %}
+<div style="margin-top:20px">
+    <div class="container-fluid">
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-md-4">
+                <a href="{% url 'subCategory' category.category_name %}">
+                    <div class="jumbotron">
+                        <h2 style="text-align: center;">{{category.category_name}}</h2>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

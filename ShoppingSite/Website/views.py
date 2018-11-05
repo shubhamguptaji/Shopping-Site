@@ -12,10 +12,13 @@ def discounts(request):
     return HttpResponse("Discounts Page")
 
 def categories(request):
-    return HttpResponse("Categories")
+    categories = get_list_or_404(Categories)
+    return render(request, 'Website/categories.html', {'categories' : categories})
 
 def subCategory(request, category):
-    return HttpResponse("this is subcategory of  " + category)
+    category1 = get_list_or_404(Categories, category_name = category)
+    subcategories = SubCategory.objects.filter(category__category_name=category)
+    return render(request, 'Website/subcategories.html', {'category': category1[0], 'subcategories': subcategories})
 
 def getProduct(request, category, subCategory):
     return HttpResponse("this is a product of  category: " + category);
