@@ -43,8 +43,8 @@ def subCategory(request, category):
 
 def getProduct(request, category, subCategory):
     category = Categories.objects.filter(category_name=category)
-    subCategory = SubCategory.objects.filter(category__category_name=category.category_name)
-    products = Products.objects.filter(subCategory__subCategory_name=subCategory.subCategory_name)
+    # subCategory = SubCategory.objects.filter(category__category_name=category.category_name)
+    # products = Products.objects.filter(subCategory__subCategory_name=subCategory.subCategory_name)
     return HttpResponse("this is a product of  category: " + category);
 
 def getSpecificProduct(request, category, subCategory, product_id):
