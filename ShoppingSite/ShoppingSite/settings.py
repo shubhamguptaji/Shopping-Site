@@ -9,6 +9,14 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sg036206@gmail.com'
+EMAIL_HOST_PASSWORD = 'himanshumittal'
+EMAIL_PORT = 587
+
+
 
 import os
 
