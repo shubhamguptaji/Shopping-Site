@@ -1,4 +1,25 @@
-{% include "Website/navbar.html" %}
-{% include "Website/discountOffers.html" %}
-<a href="{% url 'categories'%}">Categories</a>
+{% include "Website/navbar.html" %} {% include "Website/discountOffers.html" %}
+<div class="container-fluid">
+  <div style="margin-top:20px">
+    <h1 style="text-align: center">Categories you might Like</h1>
+    <div class="container-fluid">
+      <div class="row">
+        {% for category in indexCategories %}
+        <div class="col-md-4">
+          <a href="{% url 'subCategory' category.category_name %}">
+            <div class="jumbotron">
+              <h2 style="text-align: center;">{{ category.category_name }}</h2>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <a href="{% url 'categories'%}"
+          ><h4 style="text-align: right">Show all Categories>></h4></a
+        >
+      </div>
+    </div>
+  </div>
+</div>
 {% include "Website/foot.html" %}

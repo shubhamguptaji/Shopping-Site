@@ -11,14 +11,16 @@ def home(request):
     categories = get_list_or_404(Categories)
     """ find out how many times user visits this page"""
     subcategories= []
+    indexCategories = []
+    for i in range(3):
+        indexCategories.append(categories[i])
     for category in categories:
         subcategory = SubCategory.objects.filter(category__category_name=category.category_name)
         subcategories.append(subcategory)
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
     print(num_visits)
-
-    return render(request, 'Website/index.html', {'categories' : categories, 'subcategories': subcategories})
+    return render(request, 'Website/index.html', {'indexCategories' : indexCategories, 'subcategories': subcategories, 'categories': categories})
 
 
 def signup(request):
