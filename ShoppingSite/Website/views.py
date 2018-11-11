@@ -20,7 +20,7 @@ def home(request):
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
     print(num_visits)
-    return render(request, 'Website/index.html', {'indexCategories' : indexCategories, 'subcategories': subcategories, 'categories': categories})
+    return render(request, 'Website/index.html', {'indexCategories' : indexCategories, 'subcategories': subcategories, 'categories': categories, 'username': request.user.username})
 
 
 def signup(request):
@@ -46,6 +46,7 @@ def signup(request):
     return render(request,'registration/signup.html', context)
 
 def discounts(request):
+
     return HttpResponse("Discounts Page")
 
 def categories(request):
@@ -57,12 +58,19 @@ def subCategory(request, category_name):
     subcategories = SubCategory.objects.filter(category__category_name=category_name)
     return render(request, 'Website/subcategories.html', {'category': category1[0], 'subcategories': subcategories})
 
-def getProduct(request, category_name, subCategory):
+def getProduct(request, category_name, subCategory_name):
     category = Categories.objects.filter(category_name=category_name)
-    print(category)
-    # subCategory = SubCategory.objects.filter(category__category_name=category_name)
-    # products = Products.objects.filter(subCategory__subCategory_name=subCategory.subCategory_name)
-    return HttpResponse("this is a product of  category: ");
+    subCategory = SubCategory.objects.filter(category__category_name=category_name)
+    products = Products.objects.filter(subcategory__subCategory_name=subCategory_name)
+    data = {
+        'category': category_name,
+        'subCategory': subCategory,
+        'products': products
+    }
+    return render(request, 'Website/products.html', data)
 
 # def getSpecificProduct(request, category_name, subCategory_name, product_id):
 #     return HttpResponse("hello")
+
+def myProfile(request):
+    return HttpResponse("hello")

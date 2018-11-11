@@ -4,9 +4,10 @@
         <h1 style="color:black">{{category.category_name}}</h1>
         <div class="row">
             {% for subcategory in subcategories %}
-            <div class="col-md-4">
-                <a href="{% url 'subCategory' category.category_name %}">
-                    <div class="jumbotron">
+            <div class="col-md-6">
+                <img src="{{subcategory.subCategory_image}}">
+                <a href="/{{category.category_name}}/{{subcategory.subCategory_name}}/">
+                    <div  style="min-height: 300px;">
                         <h2 style="text-align: center;">{{subcategory.subCategory_name}}</h2>
                     </div>
                 </a>
