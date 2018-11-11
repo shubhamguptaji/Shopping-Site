@@ -1,0 +1,21 @@
+{% include 'Website/head.html' %}
+{% include 'Website/navbar.html' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 style="text-align: center">{{category}}</h1>
+            <h2 style="text-align: center">{{subcategory}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h2>{{product.product_brandName}} {{product.product_name}}</h2>
+            <p>Rs {{product.product_price}}</p>
+            <!-- <p>{{product.product_specs}}</p> -->
+            <p style="color: red">Rs {{product.product_discount}} off</p>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% include 'Website/foot.html' %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_list_or_404, redirect
+from django.shortcuts import render, get_list_or_404, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -17,9 +17,9 @@ def home(request):
     for category in categories:
         subcategory = SubCategory.objects.filter(category__category_name=category.category_name)
         subcategories.append(subcategory)
-    num_visits = request.session.get('num_visits', 0)
-    request.session['num_visits'] = num_visits + 1
-    print(num_visits)
+    # num_visits = request.session.get('num_visits', 0)
+    # request.session['num_visits'] = num_visits + 1
+    # print(num_visits)
     return render(request, 'Website/index.html', {'indexCategories' : indexCategories, 'subcategories': subcategories, 'categories': categories, 'username': request.user.username})
 
 
@@ -64,13 +64,19 @@ def getProduct(request, category_name, subCategory_name):
     products = Products.objects.filter(subcategory__subCategory_name=subCategory_name)
     data = {
         'category': category_name,
-        'subCategory': subCategory,
+        'subCategory': subCategory_name,
         'products': products
     }
     return render(request, 'Website/products.html', data)
 
-# def getSpecificProduct(request, category_name, subCategory_name, product_id):
-#     return HttpResponse("hello")
+def getSpecificProduct(request, category_name, subCategory_name, product_id):
+    product = get_object_or_404(Products, pk=product_id)
+    data = {
+        'category': category_name,
+        'subcategory': subCategory_name,
+        'product': product
+    }
+    return render(request, 'Website/specificProduct.html', data)
 
 def myProfile(request):
     return HttpResponse("hello")

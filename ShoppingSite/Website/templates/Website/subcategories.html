@@ -5,7 +5,7 @@
         <div class="row">
             {% for subcategory in subcategories %}
             <div class="col-md-6">
-                <img src="{{subcategory.subCategory_image}}">
+                <img src="../../../../ShoppingSite/{{subcategory.subCategory_image}}" height="200px" width="200px">
                 <a href="/{{category.category_name}}/{{subcategory.subCategory_name}}/">
                     <div  style="min-height: 300px;">
                         <h2 style="text-align: center;">{{subcategory.subCategory_name}}</h2>

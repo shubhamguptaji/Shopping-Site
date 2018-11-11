@@ -1,15 +1,16 @@
 {% include 'Website/head.html' %}
 {% include 'Website/navbar.html' %}
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" style="margin-top: 20px">
         <div class="col-md-12">
-            <h1 style="text-align: center">{{category}}</h1>
+            <h1 style="text-align: center">{{subCategory.subCategory_name}}</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
             {% for product in products %}
+            <a href="/{{category}}/{{subCategory}}/products/{{product.id}}"
             <div class="row">
                 <div class="col-md-4">
                     <img src="{{product.product_image1}}" height="200px" width="200px" class="img-responsive">
